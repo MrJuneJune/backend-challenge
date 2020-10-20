@@ -34,13 +34,13 @@ class Profile < ApplicationRecord
   before_save :grab_headings_data
   before_save :create_shorten_url
 
+  # Attributes
+  # ===========
+  # path will be used when we are looking for friends with expertise (check recommended serializer)
+  attr_accessor :path
+
   # Methods
   # ===========
-  def not_friends
-    # No need to grab both friendship and user since it will be duplicated.
-    Friendship.where.not(user_id: self.id, friendship_user_id: self.id).map(&:user)
-  end
-
   private
 
   def grab_headings_data

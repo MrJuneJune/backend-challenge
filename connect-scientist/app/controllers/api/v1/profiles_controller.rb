@@ -1,6 +1,7 @@
 class Api::V1::ProfilesController < Api::V1::BaseController
+  include SearchThroughFriends
   def index
-    profiles = Profile.all
+    profiles = Profile.includes(:friendship_profiles).all
     if profiles
       render json: profiles,
              status: :ok,
@@ -11,21 +12,30 @@ class Api::V1::ProfilesController < Api::V1::BaseController
   end
 
   def show
-    if profile
-      render json: profile,
+    if current_profile
+      render json: current_profile,
              status: :ok
     else
       respond_404_with_error_message("There are no profile id: #{params[:id]}")
     end
   end
 
-  private
+  def find_expert
+    recommendations, _ = ask_through_friends(current_profile)
 
-  def profile
-    profile = Profile.find_by(id: params[:id])
+    render json: recommendations,
+           status: :ok,
+           each_serializer: RecommendedSerializer
   end
 
-  def expert_params
-    params.permit(:keywords)
+  private
+
+  def current_profile
+    # includes so no n+1 queries.
+    Profile.includes(:friendship_profiles).find_by(id: profile_params[:id])
+  end
+
+  def profile_params
+    params.permit(:keywords, :id, :profile)
   end
 end

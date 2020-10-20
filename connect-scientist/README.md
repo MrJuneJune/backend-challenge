@@ -69,8 +69,9 @@ Things you may want to cover:
         - password
     - For searching not friends who is in expert of certain topic.
       - { topic: [ ] }
-    - returns { friends } with just links?
-    - User regex.
+      - returns { friends } with just links?
+      - from frined's freinds 
+      - User regex.
   
   
 ### Frontend
@@ -108,6 +109,3 @@ Things you may want to cover:
 
 ### Dockerize
  - Dockerize everything so it is easy to run.
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
