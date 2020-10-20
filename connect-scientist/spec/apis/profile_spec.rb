@@ -70,6 +70,10 @@ describe "find experts through friends", :type => :request do
     expect(JSON.parse(response.body)[0]["name"]).to eq("august")
   end
 
+  it 'returns correct path' do
+    expect(JSON.parse(response.body)[0]["path"]).to eq([profile.id, profile2.id])
+  end
+
   it 'returns status code 200' do
     expect(response).to have_http_status(:success)
   end
