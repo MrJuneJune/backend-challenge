@@ -40,8 +40,7 @@ RSpec.describe Profile, type: :model do
     profile = build(:profile, user: user, long_website_url: "https://www.w3schools.com/html/html_headings.asp")
     profile.save
     # TODO: Create a better way to test grabbing heading values.
-    puts profile.short_website_url
     expect(profile.payload["h1"]).to_not be_nil
+    expect(profile.short_website_url).to_not be_nil
   end
-
 end
