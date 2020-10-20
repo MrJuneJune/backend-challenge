@@ -1,8 +1,12 @@
 module Webscrapper
   extend ActiveSupport::Concern
   def grab_url_data profile
-    uri = URI.open(profile.long_website_url)
-    get_headings_from_uri(uri)
+    begin
+      uri = URI.open(profile.long_website_url)
+      get_headings_from_uri(uri)
+    rescue
+      raise Exception.new "There was a problem getting header info"
+    end
   end
 
   def get_headings_from_uri uri

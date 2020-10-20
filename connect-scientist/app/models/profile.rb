@@ -48,10 +48,6 @@ class Profile < ApplicationRecord
   end
 
   def create_shorten_url
-    if self.shorten_url(self)
-      self.short_website_url = self.shorten_url(self)
-    else
-      raise Exception.new "There was a problem creating shorten url"
-    end
+    self.short_website_url = self.shorten_url(self)
   end
 end

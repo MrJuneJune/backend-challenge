@@ -258,6 +258,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   database_cleaner
   devise
+  factory_bot
   factory_bot_rails (~> 4.0)
   faker
   jbuilder (~> 2.7)

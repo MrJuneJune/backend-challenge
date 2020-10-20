@@ -20,27 +20,27 @@ Things you may want to cover:
 
 ### Models
   - User
-    - Created using devise
+    - Created using devise DONE
     - Used to sign up and sign in
-    - Has one to one relationship with profile
+    - Has one to one relationship with profile DONE
   
-  - Profile
-    - Attributes
+  - Profile DONE
+    - Attributes DONE
       - name
       - personal website url
       - shorten website url
       - heading values could be json or another tables
-    - Has 1:m with friendship
-    - There should be two concerns
+    - Has 1:m with friendship DONE
+    - There should be two concerns DONE
       - Create shorten url if url is correct (validate long url)
       - Grab heading after creating the profile (JSON attributes)
 
-  - Friendship
-    - attributes
+  - Friendship DONE
+    - attributes DONE
       - frinedid
       - user_id 
-    - belong to profile
-    - there should be call back for creating bi directional
+    - belong to profile DONE
+    - there should be call back for creating bi directional DONE
       relationship
 
 ### APIs

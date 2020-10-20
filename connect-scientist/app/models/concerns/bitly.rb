@@ -18,7 +18,11 @@ module Bitly
   end
 
   def parse_result(response)
-    JSON.parse(response.read_body)["link"]
+   if JSON.parse(response.read_body)["link"]
+     JSON.parse(response.read_body)["link"]
+   else
+     raise Exception.new "There was a problem creating shorten url"
+   end
   end
 
   def make_post_request url

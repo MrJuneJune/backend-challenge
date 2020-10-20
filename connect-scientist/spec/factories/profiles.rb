@@ -15,6 +15,6 @@ FactoryBot.define do
   factory :profile do
     # TODO: short website should be something else
     name { Faker::Name.name }
-    long_website_url { Faker::Internet.url }
+    long_website_url { "https://www.w3schools.com/html/html_headings.asp" }
   end
 end
