@@ -5,7 +5,7 @@
 #  id                :bigint           not null, primary key
 #  name              :string
 #  long_website_url  :string
-#  short_webiste_url :string
+#  short_website_url :string
 #  payload           :json
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
@@ -22,4 +22,5 @@ RSpec.describe Profile, type: :model do
   # Validation tests
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:long_website_url) }
+
 end

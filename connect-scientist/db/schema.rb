@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_180037) do
   create_table "profiles", force: :cascade do |t|
     t.string "name"
     t.string "long_website_url"
-    t.string "short_webiste_url"
+    t.string "short_website_url"
     t.json "payload"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
