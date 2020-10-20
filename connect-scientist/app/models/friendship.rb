@@ -28,6 +28,7 @@ class Friendship < ApplicationRecord
   validates_presence_of :friendship_profile_id, :profile_id
 
   # Methods
+  # ===========
   def create_inverse
     self.class.create(inverse_match_options)
   end

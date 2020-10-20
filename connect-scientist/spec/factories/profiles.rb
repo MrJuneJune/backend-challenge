@@ -16,6 +16,5 @@ FactoryBot.define do
     # TODO: short website should be something else
     name { Faker::Name.name }
     long_website_url { Faker::Internet.url }
-    short_website_url { Faker::Internet.url }
   end
 end

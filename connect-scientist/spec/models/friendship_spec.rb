@@ -28,5 +28,4 @@ RSpec.describe Friendship, type: :model do
     expect(@profile.friendship_profiles).to include(@profile1)
     expect(@profile1.friendship_profiles).to include(@profile)
   end
-
 end

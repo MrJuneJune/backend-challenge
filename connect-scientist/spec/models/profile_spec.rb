@@ -17,10 +17,30 @@ RSpec.describe Profile, type: :model do
   # Association test
   it { should belong_to(:user) }
   it { should have_many(:friendships).dependent(:destroy) }
-  it { should have_many(:friendship_users).dependent(:destroy) }
+  it { should have_many(:friendship_profiles).dependent(:destroy) }
 
   # Validation tests
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:long_website_url) }
+
+  it "Invalid URL validations" do
+    user = build(:user)
+    profile = build(:profile, user: user, long_website_url: "non_url")
+    expect(profile).to_not be_valid
+  end
+
+  it "Valid URL validations" do
+    user = build(:user)
+    profile = build(:profile, user: user, long_website_url: "https://youtube.com/")
+    expect(profile).to be_valid
+  end
+
+  it "Check if heading values are saved" do
+    user = build(:user)
+    profile = build(:profile, user: user, long_website_url: "https://www.w3schools.com/html/html_headings.asp")
+    profile.save
+    # TODO: Create a better way to test grabbing heading values.
+    expect(profile.payload["h1"]).to_not be_nil
+  end
 
 end

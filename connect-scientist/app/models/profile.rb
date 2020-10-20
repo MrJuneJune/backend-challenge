@@ -12,6 +12,10 @@
 #  user_id           :bigint
 #
 class Profile < ApplicationRecord
+  # Concerns
+  # ===========
+  include Webscrapper
+
   # Association
   # ===========
   # It has multiple friendships and it is going to use friendships's friendship_profile_id(friends) to return Profile records.
@@ -22,4 +26,26 @@ class Profile < ApplicationRecord
   # Validations
   # ===========
   validates_presence_of :name, :long_website_url
+  validates :long_website_url, format: URI::regexp(%w[http https])
+
+  # Callbacks
+  # ===========
+  before_save :grab_headings_data, if: :long_website_url? 
+
+  # Methods
+  # ===========
+  def not_friends
+    # No need to grab both friendship and user since it will be duplicated.
+    Friendship.where.not(user_id: self.id, friendship_user_id: self.id).map(&:user)
+  end
+
+  private
+
+  def long_website_url?
+    self.long_website_url.present?
+  end
+
+  def grab_headings_data
+    self.payload = self.grab_url_data(self)
+  end
 end
