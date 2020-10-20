@@ -14,6 +14,7 @@
 class Profile < ApplicationRecord
   # Concerns
   # ===========
+  include Bitly
   include Webscrapper
 
   # Association
@@ -30,7 +31,8 @@ class Profile < ApplicationRecord
 
   # Callbacks
   # ===========
-  before_save :grab_headings_data, if: :long_website_url? 
+  before_save :grab_headings_data
+  before_save :create_shorten_url
 
   # Methods
   # ===========
@@ -41,11 +43,15 @@ class Profile < ApplicationRecord
 
   private
 
-  def long_website_url?
-    self.long_website_url.present?
-  end
-
   def grab_headings_data
     self.payload = self.grab_url_data(self)
+  end
+
+  def create_shorten_url
+    if self.shorten_url(self)
+      self.short_website_url = self.shorten_url(self)
+    else
+      raise Exception.new "There was a problem creating shorten url"
+    end
   end
 end
