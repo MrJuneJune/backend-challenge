@@ -19,4 +19,9 @@ Rails.application.routes.draw do
       post 'profiles/:id/find_expert', to: 'profiles#find_expert'
     end
   end
+  # Root page
+  root 'homepage#index'
+  # For react routing,
+  # TOOD: Probably create separate service for frontend.
+  get '/*path' => 'homepage#index'
 end
