@@ -26,6 +26,7 @@ class Friend extends React.Component {
 
 
   grabData(url) {
+    // Need to start from clean states
     this.setState({ profile: { friends: [], payload: {} }, keywords: "",  recommended_friends: [] });
     fetch(url)
       .then(response => {
@@ -44,6 +45,7 @@ class Friend extends React.Component {
         params: { id }
       }
     } = this.props;
+    
     const url = `/api/v1/profiles/${id}/find_expert`;
 
     if (this.state.keywords.length == 0)
@@ -204,7 +206,7 @@ class Friend extends React.Component {
                         to={`/friend/${recommended_friend.id}`} 
                         className="btn custom-button mr-2"
                         onClick={()=>this.grabData(recommended_friend.url)}>
-                    {recommended_friend.name} || {recommended_friend.path}
+                    {recommended_friend.name} || Through: {recommended_friend.path}
                   </Link>
                 )
               })
