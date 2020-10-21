@@ -45,3 +45,7 @@
   /* Center and scale the image nicely */
   background-size: cover;
 }
+.card-img-top {
+  max-height: 300px;
+  max-width: 150px;
+}
